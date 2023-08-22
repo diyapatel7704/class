@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <form role="form" action="{% url 'signup' %}" method="POST">
                     {% csrf_token %}
-                    <h2>{{msg}}</h2>
+                    <label for="" class="form-label">{{msg}}</label>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Name</label>
                       <input type="text" name="name" class="form-control" required>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Mobile</label>
-                      <input type="tel" name="email" class="form-control" required>
+                      <input type="tel" name="mobile" class="form-control" required>
                     </div>
                     <div class="input-group input-group-outline mb-3">
                       <textarea name="address" class="form-control" required placeholder="Address" id="" cols="30" rows="10"></textarea>

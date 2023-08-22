@@ -11,6 +11,7 @@ class Secratory(models.Model):
     address = models.TextField()
     password = models.CharField(max_length=30)
     sec_from = models.DateField(default=timezone.now())
+    profile_pic = models.FileField(upload_to='profile',default='avtar.png')
 
     def __str__(self):
         return self.name
