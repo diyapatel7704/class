@@ -1,0 +1,62 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Edit Profile</title>
+{% endblock %}
+
+{% block page %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+<main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          
+            <!-- <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5"> -->
+              <div class="card card-plain">
+                  <div class="card-body">
+                    <h2>Edit Profile</h2>
+                  <form role="form" action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="" class="form-label" style="color: red;">{{msg}}</label>
+                    
+                    <div class="input-group input-group-outline mb-3">
+                        <label for=""></label>
+                        <input type="text" name="name" class="form-control" value="{{user.name}}" required>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                        <input type="email" class="form-control" value="{{user.email}}" readonly>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                        <input type="tel" name="mobile" value="{{user.mobile}}"  class="form-control" required>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                        <textarea name="address" class="form-control" id="" va cols="30" rows="10">{{user.address}}</textarea>
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                        <label class="form-label"></label>
+                        <img src="{{user.profile_pic.url}}" style="border-radius: 100%;" alt="" height="100px" width="100px">
+                        <input type="file" name="pic"  class="form-control">
+                    </div>
+                    
+                    
+                   
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Edit Profile</button>
+                    </div>
+                  </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+{% endblock %}

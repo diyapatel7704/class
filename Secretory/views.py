@@ -64,3 +64,18 @@ def change_password(request):
         return render(request,'change-password.html',{'user':user})
     except:
         return render(request,'sign-in.html',{'msg':"Sign in first"})
+    
+
+def edit_profile(request):
+    try:
+        user = Secratory.objects.get(email=request.session['email'])
+        if request.method == 'POST':
+            user.name = request.POST['name']
+            user.mobile = request.POST['mobile']
+            user.address = request.POST['address']
+            if 'pic' in request.FILES:
+                user.profile_pic = request.FILES['pic']
+            user.save()
+        return render(request,'edit-profile.html',{'user':user})
+    except:
+        return render(request,'sign-in.html')
