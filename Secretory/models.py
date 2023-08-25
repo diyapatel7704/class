@@ -10,7 +10,7 @@ class Secratory(models.Model):
     mobile = models.CharField(max_length=10)
     address = models.TextField()
     password = models.CharField(max_length=30)
-    sec_from = models.DateField(default=timezone.now())
+    sec_from = models.DateField(auto_now_add=True)
     profile_pic = models.FileField(upload_to='profile',default='avtar.png')
 
     def __str__(self):

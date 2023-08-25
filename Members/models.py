@@ -18,6 +18,8 @@ class Member(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     res_type = models.CharField(max_length=20,default='Owner',choices=choice)
     verify = models.BooleanField(default=False)
+    pic = models.FileField(upload_to='member_pic',default='avtar.png')
+
 
     def __str__(self) -> str:
         return self.fname + '  ' + self.lname + ' >> ' + str(self.flat_no)

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import *
+from Members.models import *
 
 # Create your views here.
 
@@ -77,5 +78,14 @@ def edit_profile(request):
                 user.profile_pic = request.FILES['pic']
             user.save()
         return render(request,'edit-profile.html',{'user':user})
+    except:
+        return render(request,'sign-in.html')
+    
+def member_details(request):
+    try:
+        user = Secratory.objects.get(email=request.session['email'])
+        members = Member.objects.all()
+    
+        return render(request,'member-details.html',{'user':user,'members':members})
     except:
         return render(request,'sign-in.html')
