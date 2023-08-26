@@ -1,0 +1,136 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Edit Member</title>
+{% endblock %}
+
+
+{% block page %}
+<title>Edit Member</title>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid px-2 px-md-4">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div>
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-auto">
+          <div class="avatar avatar-xl position-relative">
+            <img src="{{member.pic.url}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+          </div>
+        </div>
+        <div class="col-auto my-auto">
+          <div class="h-100">
+            <h5 class="mb-1">
+              {{member.fname}}  {{member.lname}}
+            </h5>
+            <p class="mb-0 font-weight-normal text-sm">
+              CEO / Co-Founder
+            </p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="page-header min-vh-20">
+        <div class="container">
+          
+            <!-- <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5"> -->
+                  <div class="card-body">
+                    <h2>Edit Member</h2>
+                  <form role="form" action="{% url 'edit-member' member.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="" class="form-label" style="color: red;">{{msg}}</label>
+                    
+                    
+
+                    <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <label for=""></label>
+                                <input type="text" placeholder="fname" name="fname" class="form-control" value="{{member.fname}}" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <label for=""></label>
+                                <input type="text" placeholder="lname" name="lname" class="form-control" value="{{member.lname}}" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="email" class="form-control" value="{{member.email}}" name="email">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="text" name="mobile" value="{{member.mobile}}"  class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="text" name="wing" value="{{member.wing}}"  class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="number" name="flat_no" value="{{member.flat_no}}"  class="form-control" required>
+                            </div>
+                        </div>
+                      </div>
+                     
+                      <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="date" name="res_from" value="{{res_from}}"  class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <select class="form-select" name="res_type" aria-label="Default select example">
+                                    {% if member.res_type == 'Owner' %}
+                                    <option selected value="Owner">Owner</option>
+                                    <option value="Rent">Rent</option>
+                                    {% else %}
+                                    <option value="Owner">Owner</option>
+                                    <option selected value="Rent">Rent</option>
+                                    {% endif %}
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Member Verification</label>
+                                    {% if member.verify %}
+                                    <input class="form-check-input" name="verify" value="true" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                    {% else %}
+                                    <input class="form-check-input" name="verify" value="true" type="checkbox" id="flexSwitchCheckChecked" >
+                                    {% endif %}
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                         
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"><i class="fa fa-edit"></i> Edit Profile</button>
+                    </div>
+                  </form>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

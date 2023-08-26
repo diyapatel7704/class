@@ -82,10 +82,25 @@ def edit_profile(request):
         return render(request,'sign-in.html')
     
 def member_details(request):
-    try:
+    # try:
         user = Secratory.objects.get(email=request.session['email'])
         members = Member.objects.all()
     
         return render(request,'member-details.html',{'user':user,'members':members})
-    except:
-        return render(request,'sign-in.html')
+    # except:
+    #     return render(request,'sign-in.html')
+    
+def edit_member(request,pk):
+    # try:
+        user = Secratory.objects.get(email=request.session['email'])
+        member = Member.objects.get(id=pk)
+        if request.method == 'POST':
+            member.fname = request.POST['fname']
+            member.res_type = request.POST['res_type']
+            member.verify = True if 'verify' in request.POST  else False
+            member.save()
+            return redirect('member-details')
+            
+        return render(request,'edit-member.html',{'user':user,'member':member,'res_from':str(member.res_from)})
+    # except:
+    #     return redirect('signin')
