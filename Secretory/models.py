@@ -16,3 +16,15 @@ class Secratory(models.Model):
     def __str__(self):
         return self.name
     
+
+class Event(models.Model):
+
+    created_by = models.ForeignKey(Secratory,on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100)
+    des = models.TextField()
+    date = models.DateField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    pic = models.FileField(upload_to='event',null=True,blank=True)
+
+    def __str__(self) -> str:
+        return self.subject

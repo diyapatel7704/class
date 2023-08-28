@@ -91,7 +91,7 @@ def member_details(request):
     #     return render(request,'sign-in.html')
     
 def edit_member(request,pk):
-    # try:
+    try:
         user = Secratory.objects.get(email=request.session['email'])
         member = Member.objects.get(id=pk)
         if request.method == 'POST':
@@ -102,5 +102,13 @@ def edit_member(request,pk):
             return redirect('member-details')
             
         return render(request,'edit-member.html',{'user':user,'member':member,'res_from':str(member.res_from)})
-    # except:
-    #     return redirect('signin')
+    except:
+        return redirect('signin')
+
+
+
+def manage_events(request):
+    user = Secratory.objects.get(email=request.session['email'])
+    events = Event.objects.all()
+
+    return render(request,'manage-events.html',{'user':user,'events':events})
