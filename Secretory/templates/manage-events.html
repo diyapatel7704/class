@@ -11,9 +11,11 @@ Manage Events
 {% endblock %}
 
 {% block content %}
+
 <div class="container-fluid py-4">
-    <div class="row">
-      <div class="col-12">
+  <div class="row">
+    <div class="col-12">
+        <a href="{% url 'add-event' %}"><button class="btn btn-primary"><i class="material-icons opacity-10">event</i>           Add Event</button></a>
         <div class="card my-4">
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -60,7 +62,7 @@ Manage Events
                     </td>
                     <td class="align-middle">
                       <a href="" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        <button class="btn btn-dark"><i class="fa fa-eye"></i></button>
+                        <a href="{% url 'view-event' event.id %}"><button class="btn btn-dark"><i class="fa fa-eye"></i></button></a>
                       </a>
                       
                     </td> 
@@ -71,6 +73,7 @@ Manage Events
             </div>
           </div>
         </div>
+        <a href="{% url 'add-event' %}"><button class="btn btn-primary"><i class="material-icons opacity-10">event</i>           Add Event</button></a>
       </div>
     </div>
     <!-- <div class="row">

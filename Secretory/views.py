@@ -109,6 +109,42 @@ def edit_member(request,pk):
 
 def manage_events(request):
     user = Secratory.objects.get(email=request.session['email'])
-    events = Event.objects.all()
+    events = Event.objects.all()[::-1]
 
     return render(request,'manage-events.html',{'user':user,'events':events})
+
+def view_event(request,pk):
+    user = Secratory.objects.get(email=request.session['email'])
+    event = Event.objects.get(id=pk)
+
+    return render(request,'view-event.html',{'user':user,'event':event,'eventdate':str(event.date)})
+
+def delete_event(request,pk):
+    event = Event.objects.get(id=pk)
+    event.delete()
+    return redirect('manage-events')
+
+def add_event(request):
+    user = Secratory.objects.get(email=request.session['email'])
+    if request.method == 'POST':
+        if 'pic' in request.FILES:
+
+            Event.objects.create(
+                created_by = user,
+                subject = request.POST['sub'],
+                des = request.POST['des'],
+                date = request.POST['date'],
+                pic = request.FILES['pic']
+            )
+        else:
+             Event.objects.create(
+                created_by = user,
+                subject = request.POST['sub'],
+                des = request.POST['des'],
+                date = request.POST['date']
+                
+            )
+        return redirect('manage-events')
+    return render(request,'add-event.html',{'user':user})
+
+

@@ -1,0 +1,93 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}<title>View Event </title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid px-2 px-md-4">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div>
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-auto">
+          <div class="avatar avatar-xl position-relative">
+            <img src="{{member.pic.url}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+          </div>
+        </div>
+        <div class="col-auto my-auto">
+          <div class="h-100">
+            <h5 class="mb-1">
+              {{member.fname}}  {{member.lname}}
+            </h5>
+            <p class="mb-0 font-weight-normal text-sm">
+              CEO / Co-Founder
+            </p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="page-header min-vh-20">
+        <div class="container">
+          
+            <!-- <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5"> -->
+                  <div class="card-body">
+                    <h2>View Event</h2>
+
+                    <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <div class="input-group input-group-outline">
+                                <label for=""></label>
+                                <input type="text" placeholder=""  class="form-control" value="{{event.created_by.name}}  ({{event.created_by.email}})" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <label for=""></label>
+                                <input type="text" placeholder="" name="lname" class="form-control" value="{{event.subject}}" required>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="email" class="form-control" value="{{event.created_on}}" name="email" readonly>
+                            </div>
+                        </div>
+                      </div>
+
+                     
+                      <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <div class="input-group input-group-outline mb-3">
+                                <input type="date" name="res_from" value="{{eventdate}}"  class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        
+                      </div>
+
+                      <div class="text-left">
+                        <textarea name="" class="form-control" style="border: black 5px bold; border-radius: 5px bold; border-color: black;" id="" cols="30" rows="10">{{event.des}}</textarea>
+                      </div>
+                      <div class="text-center">
+                        {% if event.pic %}
+                        <img src="{{event.pic.url}}" alt="" height="100px" width="100px">
+                        {% endif %}
+                      </div>
+                         
+                    <div class="text-center">
+                      <a href="{% url 'delete-event' event.id %}"><button class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"><i class="fa fa-trash"></i> Delete Event</button></a>
+                    </div>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

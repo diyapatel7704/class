@@ -11,6 +11,9 @@ urlpatterns = [
     path('member-details/',views.member_details, name='member-details'),
     path('edit-member/<int:pk>',views.edit_member, name='edit-member'),
     path('manage-events/',views.manage_events, name='manage-events'),
+    path('view-event/<int:pk>',views.view_event, name='view-event'),
+    path('delete-event/<int:pk>',views.delete_event, name='delete-event'),
+    path('add-event/',views.add_event, name='add-event'),
 
 
 ]
