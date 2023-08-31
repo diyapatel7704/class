@@ -19,6 +19,7 @@ class Member(models.Model):
     res_type = models.CharField(max_length=20,default='Owner',choices=choice)
     verify = models.BooleanField(default=False)
     pic = models.FileField(upload_to='member_pic',default='avtar.png')
+    password = models.CharField(max_length=30,null=True,blank=True)
 
 
     def __str__(self) -> str:
