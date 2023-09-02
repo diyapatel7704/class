@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from Members.models import *
 
 # Create your models here.
 
@@ -28,3 +29,20 @@ class Event(models.Model):
 
     def __str__(self) -> str:
         return self.subject
+    
+
+class Complain(models.Model):
+    
+    complain_by = models.ForeignKey(Member,on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50)
+    des = models.TextField()
+    pic = models.FileField(upload_to='complains/',null=True,blank=True)
+    solve_by = models.ForeignKey(Secratory,on_delete=models.CASCADE,blank=True,null=True)
+    complain_on = models.DateTimeField(auto_now_add=True)
+    solve_on = models.DateTimeField(null=True,blank=True)
+    solve = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.subject
+    
+

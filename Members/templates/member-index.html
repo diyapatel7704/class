@@ -104,8 +104,8 @@
                 <div class="row">
                     <div class="col-sm-3 col-xs-6">
                         <div class="counter-item">
-                            <p class="counter" data-to="377" data-speed="2000">0</p>
-                            <h3>Cofee Cups</h3>
+                            <p class="counter" data-to="{{event_count}}" data-speed="1000">0</p>
+                            <h3>Events Celebreated</h3>
                         </div><!-- /.counter-item -->
                     </div>
                     <div class="col-sm-3 col-xs-6">
@@ -131,6 +131,32 @@
             
         </section><!-- /.section-map-feature -->
 
+        {% if request.session.memail %}
+        <section class="site-section section-portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="heading-separator">Events </h2>
+                    <p class="subheading-text"></p>
+                </div>
+                <div class="row">
+                    {% for event in events %}
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="portfolio-item">
+                            {% if event.pic %}
+                            <img src="{{event.pic.url}}" class="img-res" alt="">
+                            {% else %}
+                            <img src="{% static 'member/assets/img/portfolio-1.jpg' %}" class="img-res" alt="">
+                            {% endif %}
+                            <h4 class="portfolio-item-title">{{event.subject}}</h4><br><br><br>
+                            
+                            <a href="portfolio-item.html"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section><!-- /.section-portfolio -->
+        {% else %}
         <section class="site-section section-portfolio">
             <div class="container">
                 <div class="text-center">
@@ -196,7 +222,8 @@
                     </div>
                 </div>
             </div>
-        </section><!-- /.section-portfolio -->
+        </section>
+        {% endif %}
 
         <section class="site-section section-newsletter text-center">
             <div class="container">
