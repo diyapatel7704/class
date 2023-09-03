@@ -147,4 +147,7 @@ def add_event(request):
         return redirect('manage-events')
     return render(request,'add-event.html',{'user':user})
 
+def manage_complains(request):
+    complains = Complain.objects.all()
+    return render(request,'manage-complain.html',{'complains':complains})
 
