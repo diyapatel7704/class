@@ -15,5 +15,6 @@ urlpatterns = [
     path('delete-event/<int:pk>',views.delete_event, name='delete-event'),
     path('add-event/',views.add_event, name='add-event'),
     path('manage-complains/',views.manage_complains, name='manage-complains'),
+    path('solve-complain/<int:pk>',views.solve_complain,name='solve-complain')
     
 ]

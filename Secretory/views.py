@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import *
 from Members.models import *
+from datetime import datetime
 
 # Create your views here.
 
@@ -148,6 +149,18 @@ def add_event(request):
     return render(request,'add-event.html',{'user':user})
 
 def manage_complains(request):
+    user= Secratory.objects.get(email=request.session['email'])
     complains = Complain.objects.all()
-    return render(request,'manage-complain.html',{'complains':complains})
+    return render(request,'manage-complain.html',{'complains':complains,'user':user})
+
+def solve_complain(request,pk):
+    
+    complain = Complain.objects.get(id=pk)
+    user = Secratory.objects.get(email=request.session['email'])
+    complain.solve = True
+    complain.solve_by = user
+    complain.solve_on = datetime.now()
+    complain.save()
+
+    return redirect('manage-complains')
 
