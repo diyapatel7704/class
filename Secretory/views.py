@@ -164,3 +164,19 @@ def solve_complain(request,pk):
 
     return redirect('manage-complains')
 
+def view_complain(request,pk):
+    user = Secratory.objects.get(email=request.session['email'])
+    complain = Complain.objects.get(id=pk)
+
+    return render(request,'view-complain.html',{'complain':complain,'user':user})
+    
+
+def manage_notice(request):
+    user = Secratory.objects.get(email=request.session['email'])
+    notices = Notice.objects.all()
+    return render(request,'manage-notice.html',{'user':user,'notices':notices})
+
+def new_notice(request):
+    user = Secratory.objects.get(email=request.session['email'])
+    members = Member.objects.filter(verify=True)
+    return render(request,'new-notice.html',{'user':user,'members':members})
