@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from Secretory import models
-from datetime import date
+from datetime import date, datetime
 
 # Create your views here.
 
@@ -48,3 +48,20 @@ def create_complain(request):
 
         return render(request,'create-complain.html',{'msg':'Complain has been registered'})
     return render(request,'create-complain.html')
+
+def my_complains(request):
+    # user = Member.objects.get(email=request.session['memail'])
+    complains = models.Complain.objects.filter(complain_by__email=request.session['memail'])
+    return render(request,'my-complains.html',{'complains':complains})
+
+def my_notices(request):
+    # user = Member.objects.get(email=request.session['memail'])
+    notices = models.Notice.objects.filter(send_to__email=request.session['memail'])
+    return render(request,'my-notice.html',{'notices':notices})
+
+def view_my_notice(request,pk):
+    notice = models.Notice.objects.get(id=pk)
+    notice.read = True
+    notice.read_time = datetime.now()
+    notice.save()
+    return redirect('my-notices')

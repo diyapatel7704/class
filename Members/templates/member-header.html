@@ -68,12 +68,18 @@
 
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                               <li><a href="{% url 'create-complain' %}">New Complain</a></li>
-                              <li><a href="blog.html">My Complain</a></li>
+                              <li><a href="{% url 'my-complains' %}">My Complain</a></li>
                             </ul>
-
                         </li>
                         
-                        <li><a href="{% url 'member-logout' %}">Logout</a></li>
+                        <li><a href="{% url 'my-notices' %}">My Notice</a></li>
+
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.session.memail}}<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                              <li><a href="{% url 'member-logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
 
                         {% else %}
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
