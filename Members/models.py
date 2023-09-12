@@ -26,3 +26,14 @@ class Member(models.Model):
         return self.fname + '  ' + self.lname + ' >> ' + str(self.flat_no)
 
 
+class Main(models.Model):
+
+    member = models.ForeignKey(Member,on_delete=models.CASCADE)
+    pay_on = models.DateTimeField(auto_now_add=True)
+    verify = models.BooleanField(default=False)
+    amount = models.IntegerField()
+    trans_id = models.CharField(max_length=30)
+    pay_for = models.DateField()
+
+    def __str__(self):
+        return self.member.fname + ' >> ' + self.amount

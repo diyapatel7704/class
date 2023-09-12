@@ -41,13 +41,13 @@
                         <div class="p-2">
                             <div class="input-group input-group-outline">
                                 <label for=""></label>
-                                <input type="text" placeholder=""  class="form-control" value="{{event.created_by.name}}  ({{event.created_by.email}})" required>
+                                <input type="text" placeholder=""  class="form-control" value="{{event.created_by.name}}  ({{event.created_by.email}})" readonly>
                             </div>
                         </div>
                         <div class="p-2">
                             <div class="input-group input-group-outline mb-3">
                                 <label for=""></label>
-                                <input type="text" placeholder="" name="lname" class="form-control" value="{{event.subject}}" required>
+                                <input type="text" placeholder="" name="lname" class="form-control" value="{{event.subject}}" readonly>
                             </div>
                         </div>
                         <div class="p-2">
@@ -61,7 +61,7 @@
                       <div class="d-flex flex-row">
                         <div class="p-2">
                             <div class="input-group input-group-outline mb-3">
-                                <input type="date" name="res_from" value="{{eventdate}}"  class="form-control" required>
+                                <input type="date" name="res_from" value="{{eventdate}}"  class="form-control" readonly>
                             </div>
                         </div>
                         

@@ -65,3 +65,6 @@ def view_my_notice(request,pk):
     notice.read_time = datetime.now()
     notice.save()
     return redirect('my-notices')
+
+def pay_main(request):
+    return render(request,'pay-main.html')
